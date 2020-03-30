@@ -1,32 +1,15 @@
-# yii2-module-backup
-
-[![Build Status](https://travis-ci.org/floor12/yii2-module-files.svg?branch=master)](https://travis-ci.org/floor12/yii2-module-backup)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/floor12/yii2-module-backup/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/floor12/yii2-module-backup/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/floor12/yii2-module-backup/v/stable)](https://packagist.org/packages/floor12/yii2-module-backup)
-[![Latest Unstable Version](https://poser.pugx.org/floor12/yii2-module-backup/v/unstable)](https://packagist.org/packages/floor12/yii2-module-backup)
-[![Total Downloads](https://poser.pugx.org/floor12/yii2-module-backup/downloads)](https://packagist.org/packages/floor12/yii2-module-backup)
-[![License](https://poser.pugx.org/floor12/yii2-module-backup/license)](https://packagist.org/packages/floor12/yii2-module-backup)
-
-*Этот файл доступен на [русском языке](README_RU.md).*
-
-This module helps to create and restore backups of databases and files stored on disk. It has web-interface, console commands, and REST-API for remote control. It also supports io-priority settings and has flexible configuration options. To work independent of the
- application database, this module uses its sqlite database in the backup folder.
- 
-### i18n
-Now, this module supports English and Russian languages.
- 
-![Yii backup module](https://floor12.net/files/default/get?hash=4895685e3392ade4e0e2a40a762bc4fe)
+# yii2-backup
 
 ## Installation
 
 To add this module to your app, just run:
 
  ```bash
- $ composer require floor12/yii2-module-backup
+ $ composer require yareg-com/yii2-backup
  ```
 or add this to the `require` section of your composer.json.
  ```json
- "floor12/yii2-module-backup": "dev-master"
+ "yareg-com/yii2-backup": "dev-master"
  ```
  
  
@@ -34,7 +17,7 @@ or add this to the `require` section of your composer.json.
  ```php  
  'modules' => [
              'backup' => [
-                 'class' => 'floor12\backup\Module',
+                 'class' => 'yareg-com\backup\Module',
                  'administratorRoleName' => '@',
                  'configs' => [
                      [
