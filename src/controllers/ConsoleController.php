@@ -66,7 +66,7 @@ class ConsoleController extends Controller
         if (!$model)
             throw new ErrorException('Backup not found.');
 
-        Yii::createObject(BackupRestore::class, [$model])->delete();
+        $model->delete();
         $this->stdout('Backup deleted.' . PHP_EOL, Console::FG_GREEN);
     }
 
