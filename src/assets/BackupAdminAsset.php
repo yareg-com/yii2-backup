@@ -6,7 +6,7 @@
  * Time: 21:28
  */
 
-namespace floor12\backup\assets;
+namespace yareg\backup\assets;
 
 
 use yii\web\AssetBundle;
@@ -15,7 +15,7 @@ use yii\web\AssetBundle;
  * Backup module admin asset bundle
  *
  * Class BackupAdminAsset
- * @package floor12\backup\assets
+ * @package yareg\backup\assets
  */
 class BackupAdminAsset extends AssetBundle
 {

@@ -6,7 +6,7 @@
  * Time: 0:03
  */
 
-namespace floor12\backup\models;
+namespace yareg\backup\models;
 
 
 use yii\base\Model;

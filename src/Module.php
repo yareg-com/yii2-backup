@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace floor12\backup;
+namespace yareg\backup;
 
 use Yii;
 use yii\base\ErrorException;
@@ -36,7 +36,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'floor12\backup\controllers';
+    public $controllerNamespace = 'yareg\backup\controllers';
     /**
      * @var string
      */

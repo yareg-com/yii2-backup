@@ -1,6 +1,6 @@
 {
-  "name": "floor12/yii2-module-backup",
-  "description": "Yii2 backup module",
+  "name": "yareg-com/yii2-backup",
+  "description": "Yii2 backup extension",
   "keywords": [
     "yii2",
     "extension",
@@ -9,7 +9,7 @@
     "zip",
     "gzip"
   ],
-  "homepage": "https://github.com/dragonjet/yii2-module-backup",
+  "homepage": "https://github.com/yareg-com/yii2-backup",
   "type": "yii2-extension",
   "license": "MIT",
   "authors": [
@@ -18,6 +18,12 @@
       "email": "floor12@floor12.net",
       "role": "Developer",
       "homepage": "http://floor12.net"
+    },
+    {
+      "name": "yareg",
+      "email": "yar@yareg.com",
+      "role": "Developer",
+      "homepage": "https://yareg.com"
     }
   ],
   "minimum-stability": "stable",
@@ -33,12 +39,12 @@
   },
   "autoload": {
     "psr-4": {
-      "floor12\\backup\\": "src"
+      "yareg\\backup\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "floor12\\backup\\tests\\": "tests"
+      "yareg\\backup\\tests\\": "tests"
     }
   },
   "repositories": [

@@ -6,17 +6,17 @@
  * Time: 07:45
  */
 
-namespace floor12\backup\tests\unit;
+namespace yareg\backup\tests\unit;
 
 /**
  * This is a tests for Backup class
  */
 
-use floor12\backup\logic\BackupCreate;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupType;
-use floor12\backup\tests\MysqldumpMock;
-use floor12\backup\tests\TestCase;
+use yareg\backup\logic\BackupCreate;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupType;
+use yareg\backup\tests\MysqldumpMock;
+use yareg\backup\tests\TestCase;
 use Yii;
 use yii\base\InvalidConfigException;
 

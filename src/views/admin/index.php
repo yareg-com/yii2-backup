@@ -11,12 +11,12 @@
  */
 
 
-use floor12\backup\assets\BackupAdminAsset;
-use floor12\backup\assets\IconHelper;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupFilter;
-use floor12\backup\models\BackupStatus;
-use floor12\backup\models\BackupType;
+use yareg\backup\assets\BackupAdminAsset;
+use yareg\backup\assets\IconHelper;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupFilter;
+use yareg\backup\models\BackupStatus;
+use yareg\backup\models\BackupType;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;

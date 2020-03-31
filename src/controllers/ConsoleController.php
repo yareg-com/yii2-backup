@@ -6,13 +6,13 @@
  * Time: 20:34
  */
 
-namespace floor12\backup\controllers;
+namespace yareg\backup\controllers;
 
 use ErrorException;
-use floor12\backup\logic\BackupCreate;
-use floor12\backup\logic\BackupRestore;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupType;
+use yareg\backup\logic\BackupCreate;
+use yareg\backup\logic\BackupRestore;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupType;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
@@ -22,7 +22,7 @@ use yii\helpers\Console;
  * Floor12 backup module console controller
  *
  * Class ConsoleController
- * @package floor12\backup\controllers
+ * @package yareg\backup\controllers
  */
 class ConsoleController extends Controller
 {

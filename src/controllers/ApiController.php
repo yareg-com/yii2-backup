@@ -6,12 +6,12 @@
  * Time: 23:07
  */
 
-namespace floor12\backup\controllers;
+namespace yareg\backup\controllers;
 
-use floor12\backup\logic\BackupCreate;
-use floor12\backup\logic\BackupRestore;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupFilter;
+use yareg\backup\logic\BackupCreate;
+use yareg\backup\logic\BackupRestore;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupFilter;
 use Throwable;
 use Yii;
 use yii\base\InvalidConfigException;

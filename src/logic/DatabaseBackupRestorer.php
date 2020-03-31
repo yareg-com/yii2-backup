@@ -1,7 +1,7 @@
 <?php
 
 
-namespace floor12\backup\logic;
+namespace yareg\backup\logic;
 
 
 use yii\base\Exception;

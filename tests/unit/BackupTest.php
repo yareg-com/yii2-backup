@@ -6,14 +6,14 @@
  * Time: 07:45
  */
 
-namespace floor12\backup\tests\unit;
+namespace yareg\backup\tests\unit;
 
 /**
  * This is a tests for Backup class
  */
 
-use floor12\backup\models\Backup;
-use floor12\backup\tests\TestCase;
+use yareg\backup\models\Backup;
+use yareg\backup\tests\TestCase;
 use Yii;
 
 class BackupTest extends TestCase

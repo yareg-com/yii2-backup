@@ -6,7 +6,7 @@
  * Time: 23:48
  */
 
-namespace floor12\backup\models;
+namespace yareg\backup\models;
 
 
 use yii2mod\enum\helpers\BaseEnum;

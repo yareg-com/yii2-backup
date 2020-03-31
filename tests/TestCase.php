@@ -6,10 +6,10 @@
  * Time: 12:40
  */
 
-namespace floor12\backup\tests;
+namespace yareg\backup\tests;
 
-use floor12\backup\models\BackupType;
-use floor12\backup\Module;
+use yareg\backup\models\BackupType;
+use yareg\backup\Module;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\console\Application;

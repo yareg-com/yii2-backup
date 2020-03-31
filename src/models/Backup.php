@@ -6,7 +6,7 @@
  * Time: 23:10
  */
 
-namespace floor12\backup\models;
+namespace yareg\backup\models;
 
 
 use Yii;
@@ -14,7 +14,7 @@ use yii\db\ActiveRecord;
 
 /**
  * Class Backup
- * @package floor12\backup\models
+ * @package yareg\backup\models
  * @property integer $id
  * @property integer $status
  * @property integer $type

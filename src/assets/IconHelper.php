@@ -6,13 +6,13 @@
  * Time: 10:22
  */
 
-namespace floor12\backup\assets;
+namespace yareg\backup\assets;
 
 /**
  * Collection of SVG icons
  *
  * Class IconHelper
- * @package floor12\backup\assets
+ * @package yareg\backup\assets
  */
 class IconHelper
 {

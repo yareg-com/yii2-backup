@@ -6,12 +6,12 @@
  * Time: 20:35
  */
 
-namespace floor12\backup\logic;
+namespace yareg\backup\logic;
 
 use ErrorException;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupStatus;
-use floor12\backup\models\BackupType;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupStatus;
+use yareg\backup\models\BackupType;
 use Ifsnop\Mysqldump\Mysqldump;
 use Throwable;
 use Yii;
@@ -20,7 +20,7 @@ use yii\db\StaleObjectException;
 
 /**
  * Class BackupCreate
- * @package floor12\backup\logic
+ * @package yareg\backup\logic
  * @property Backup $model
  * @property array $configs
  * @property array $_config
@@ -39,8 +39,8 @@ class BackupCreate
     /**
      * BackupCreate constructor.
      * @param string $config_id
+     * @param string|null $dumperClass
      * @throws InvalidConfigExceptionAlias
-     * @throws ErrorException
      */
     public function __construct(string $config_id, string $dumperClass = Mysqldump::class)
     {

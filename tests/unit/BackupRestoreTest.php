@@ -6,18 +6,18 @@
  * Time: 07:45
  */
 
-namespace floor12\backup\tests\unit;
+namespace yareg\backup\tests\unit;
 
 /**
  * This is a tests for Backup class
  */
 
 use ErrorException;
-use floor12\backup\logic\BackupRestore;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupStatus;
-use floor12\backup\models\BackupType;
-use floor12\backup\tests\TestCase;
+use yareg\backup\logic\BackupRestore;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupStatus;
+use yareg\backup\models\BackupType;
+use yareg\backup\tests\TestCase;
 use Yii;
 use yii\base\InvalidConfigException;
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace floor12\backup\tests;
+namespace yareg\backup\tests;
 
 
 use Ifsnop\Mysqldump\Mysqldump;

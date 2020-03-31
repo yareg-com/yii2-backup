@@ -6,19 +6,19 @@
  * Time: 20:35
  */
 
-namespace floor12\backup\logic;
+namespace yareg\backup\logic;
 
 use ErrorException;
 use Exception;
-use floor12\backup\models\Backup;
-use floor12\backup\models\BackupType;
+use yareg\backup\models\Backup;
+use yareg\backup\models\BackupType;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\Connection;
 
 /**
  * Class BackupRestore
- * @package floor12\backup\logic
+ * @package yareg\backup\logic
  * @property Connection $_connection
  * @property Backup $_model
  * @property array $_configs

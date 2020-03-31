@@ -34,7 +34,7 @@
  ```php  
  'modules' => [
              'backup' => [
-                 'class' => 'floor12\backup\Module',
+                 'class' => 'yareg\backup\Module',
                  'administratorRoleName' => '@',
                  'configs' => [
                      [

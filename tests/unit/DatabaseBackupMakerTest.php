@@ -6,15 +6,15 @@
  * Time: 07:45
  */
 
-namespace floor12\backup\tests\unit;
+namespace yareg\backup\tests\unit;
 
 /**
  * This is a tests for Backup class
  */
 
-use floor12\backup\logic\DatabaseBackupMaker;
-use floor12\backup\tests\MysqldumpMock;
-use floor12\backup\tests\TestCase;
+use yareg\backup\logic\DatabaseBackupMaker;
+use yareg\backup\tests\MysqldumpMock;
+use yareg\backup\tests\TestCase;
 use Yii;
 use yii\base\Exception;
 use yii\db\Connection;
