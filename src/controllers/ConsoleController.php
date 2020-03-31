@@ -56,6 +56,21 @@ class ConsoleController extends Controller
     }
 
     /**
+     * @param string $backup_id
+     * @throws ErrorException
+     * @throws InvalidConfigException
+     */
+    public function actionDelete(string $backup_id)
+    {
+        $model = Backup::findOne((int)$backup_id);
+        if (!$model)
+            throw new ErrorException('Backup not found.');
+
+        Yii::createObject(BackupRestore::class, [$model])->delete();
+        $this->stdout('Backup deleted.' . PHP_EOL, Console::FG_GREEN);
+    }
+
+    /**
      * List all created backups.
      *
      * @throws ErrorException
