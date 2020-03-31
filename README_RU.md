@@ -27,7 +27,7 @@
  ```
 или добавьте эту строку в секцию `require` вашего composer.json.
  ```json
- "floor12/yii2-module-backup": "dev-master"
+ "yareg-com/yii2-backup": "dev-master"
  ```
  
  После этого необходимо зарегистрировать модуль с необходимыми параметрами в секции `modules` конфига приложения:

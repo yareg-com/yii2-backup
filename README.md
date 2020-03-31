@@ -17,7 +17,7 @@ or add this to the `require` section of your composer.json.
  ```php  
  'modules' => [
              'backup' => [
-                 'class' => 'yareg-com\backup\Module',
+                 'class' => 'yareg\backup\Module',
                  'administratorRoleName' => '@',
                  'configs' => [
                      [
