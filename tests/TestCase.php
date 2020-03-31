@@ -42,7 +42,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function setApp()
     {
         $backupModule = [
-            'class' => 'floor12\backup\Module',
+            'class' => Module::class,
             'backupFolder' => '@vendor/../tests/tmp',
             'configs' => [
                 [
