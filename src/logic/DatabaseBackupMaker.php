@@ -27,6 +27,10 @@ class DatabaseBackupMaker
      * @var Mysqldump
      */
     protected $dumper;
+    /**
+     * @var string
+     */
+    protected $compression;
 
     /**
      * DatabaseBackupMaker constructor.
@@ -35,7 +39,11 @@ class DatabaseBackupMaker
      * @param string $dumperClass
      * @throws Exception
      */
-    public function __construct(string $backupFilePath, Connection $connection, string $dumperClass = Mysqldump::class)
+    public function __construct(
+        string $backupFilePath,
+        Connection $connection,
+        string $dumperClass = Mysqldump::class,
+        string $compression = Mysqldump::NONE)
     {
         if (file_exists($backupFilePath))
             throw new Exception("Backup file exists.");
@@ -43,6 +51,7 @@ class DatabaseBackupMaker
         $this->backupFilePath = $backupFilePath;
         $this->connection = $connection;
         $this->dumperClass = $dumperClass;
+        $this->compression = $compression;
     }
 
     /**
@@ -56,7 +65,7 @@ class DatabaseBackupMaker
             $this->connection->dsn,
             $this->connection->username,
             $this->connection->password,
-            ['compress' => Mysqldump::GZIP]
+            ['compress' => $this->compression]
         );
         $this->dumper->start($this->backupFilePath);
         if (Yii::$app->getModule('backup')->chmod)

@@ -8,7 +8,6 @@
 
 namespace yareg\backup\logic;
 
-use ErrorException;
 use yareg\backup\models\Backup;
 use yareg\backup\models\BackupStatus;
 use yareg\backup\models\BackupType;
@@ -68,10 +67,34 @@ class BackupCreate
     public function run()
     {
         $this->deleteOldFiles();
-
         $this->createBackupItem();
 
-        if ($this->currentConfig['type'] == BackupType::DB) {
+        switch($this->currentConfig['type']) {
+            case BackupType::DB:
+                $connection = Yii::$app->{$this->currentConfig['connection']};
+                Yii::createObject(
+                    DatabaseBackupMaker::class,
+                    [
+                        $this->model->getFullPath(),
+                        $connection,
+                        $this->dumperClass
+                    ]
+                )->execute();
+                break;
+
+            case BackupType::FILES:
+                $targetPath = Yii::getAlias($this->currentConfig['path']);
+                Yii::createObject(
+                    FolderBackupMaker::class,
+                    [
+                        $this->model->getFullPath(),
+                        $targetPath
+                    ]
+                )->execute();
+                break;
+        }
+
+/*        if ($this->currentConfig['type'] == BackupType::DB) {
             $connection = Yii::$app->{$this->currentConfig['connection']};
             Yii::createObject(DatabaseBackupMaker::class, [$this->model->getFullPath(), $connection, $this->dumperClass])->execute();
         }
@@ -79,7 +102,7 @@ class BackupCreate
         if ($this->currentConfig['type'] == BackupType::FILES) {
             $targetPath = Yii::getAlias($this->currentConfig['path']);
             Yii::createObject(FolderBackupMaker::class, [$this->model->getFullPath(), $targetPath])->execute();
-        }
+        }*/
 
         $this->finalize();
     }
@@ -118,6 +141,7 @@ class BackupCreate
     {
         if (!isset($this->currentConfig['limit']) || empty($this->currentConfig['limit']))
             return false;
+
         $backups = Backup::find()
             ->where(['config_id' => $this->currentConfig['id']])
             ->orderBy('date DESC')
