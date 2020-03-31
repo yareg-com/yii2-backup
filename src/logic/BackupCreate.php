@@ -158,7 +158,7 @@ class BackupCreate
      */
     private function createFileName()
     {
-        $extension = BackupType::DB ? Backup::EXT_TGZ : Backup::EXT_ZIP;
+        $extension = BackupType::DB ? Backup::EXT_SQL : Backup::EXT_ZIP;
         $date = date("Y-m-d_H-i-s");
         $rand = substr(md5(rand(0, 9999)), 0, 3);
         return "{$this->currentConfig['id']}_{$date}_{$rand}{$extension}";
