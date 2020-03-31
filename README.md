@@ -35,7 +35,6 @@ or add this to the `require` section of your composer.json.
                          'limit' => 2
                      ]
                  ]
-             ]
              ],
          ],
      ...
