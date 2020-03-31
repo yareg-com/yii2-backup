@@ -76,7 +76,7 @@ $ ./yii backup/console/index>
 
 *To create config run*
  ```bash
-$ ./yii backup/console/create <backup_config_id>
+$ ./yii backup/console/backup <backup_config_id>
 ```
 `backup_config_id` is backup item identifier from module configuration.
 

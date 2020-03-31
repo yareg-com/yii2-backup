@@ -92,7 +92,7 @@ $ ./yii backup/console/index>
 
 *Для создания нового бекапа выполните*
  ```bash
-$ ./yii backup/console/create <backup_config_id>
+$ ./yii backup/console/backup <backup_config_id>
 ```
 `backup_config_id` это индификатор конфигурации бекапа.
 
