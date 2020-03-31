@@ -23,7 +23,7 @@ class BackupAdminAsset extends AssetBundle
         'forceCopy' => true,
     ];
 
-    public $sourcePath = '@vendor/floor12/yii2-module-backup/src/assets/';
+    public $sourcePath = '@vendor/yareg-com/yii2-backup/src/assets/';
 
     public $css = [
 

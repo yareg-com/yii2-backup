@@ -122,7 +122,7 @@ class Module extends \yii\base\Module
     {
         Yii::$app->i18n->translations['app.f12.backup'] = [
             'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@vendor/floor12/yii2-module-backup/src/messages',
+            'basePath' => '@vendor/yareg-com/yii2-backup/src/messages',
             'sourceLanguage' => 'en-US',
             'fileMap' => [
                 'app.f12.backup' => 'backup.php',

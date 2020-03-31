@@ -19,7 +19,7 @@ use yii\console\Controller;
 use yii\helpers\Console;
 
 /**
- * Floor12 backup module console controller
+ * Backup module console controller
  *
  * Class ConsoleController
  * @package yareg\backup\controllers
