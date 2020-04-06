@@ -1,4 +1,5 @@
 restoreConfirmText = '';
+deleteConfirmText = '';
 restoreSuccessText = '';
 backupSuccessText = '';
 deleteSuccessText = '';
@@ -37,7 +38,7 @@ backup = {
     },
 
     delete: function (id) {
-        if (confirm(restoreConfirmText))
+        if (confirm(deleteConfirmText))
             $.ajax({
                 url: '/backup/admin/delete',
                 method: 'DELETE',

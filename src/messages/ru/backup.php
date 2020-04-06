@@ -23,6 +23,7 @@ return [
     'Download' => 'Скачать',
     'Backup was successful restored.' => 'Бекап успешно восстановлен.',
     'Do you want to restore this backup?' => 'Вы уверены, что хотите восстановить этот бекап?',
+    'Do you want to delete this backup?' => 'Вы уверены, что хотите удалить этот бекап?',
     'Backup was successful created.' => 'Бекап успешно создан.',
     'Backup is not found.' => 'Бекап не найден.',
     'Backup config is not found.' => 'Конфигурация бекапа не найдена.',
