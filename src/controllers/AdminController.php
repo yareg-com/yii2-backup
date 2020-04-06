@@ -40,7 +40,7 @@ class AdminController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => Yii::$app->getModule('backup')->allowWebAccess ?? false,
+                        'allow' => true,
                         'roles' => [Yii::$app->getModule('backup')->administratorRoleName],
                     ],
                 ],
@@ -59,9 +59,14 @@ class AdminController extends Controller
 
     /**
      * @inheritdoc
+     * @throws NotFoundHttpException
      */
     public function init()
     {
+        if (!(Yii::$app->getModule('backup')->allowWebAccess ?? false))
+            throw new NotFoundHttpException();
+
+
         $this->layout = Yii::$app->getModule('backup')->adminLayout;
         parent::init();
     }
