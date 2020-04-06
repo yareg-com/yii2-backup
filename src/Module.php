@@ -16,6 +16,10 @@ use yii\db\Exception;
 
 class Module extends \yii\base\Module
 {
+    /**
+     * @var boolean
+     */
+    public $allowWebAccess = false;
 
     /**
      * @var string
