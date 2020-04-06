@@ -40,7 +40,7 @@ class AdminController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => Yii::$app->getModule('backup')->administratorRoleName ?? false,
+                        'allow' => Yii::$app->getModule('backup')->allowWebAccess ?? false,
                         'roles' => [Yii::$app->getModule('backup')->administratorRoleName],
                     ],
                 ],
