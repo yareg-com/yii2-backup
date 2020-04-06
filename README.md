@@ -18,6 +18,7 @@ or add this to the `require` section of your composer.json.
  'modules' => [
              'backup' => [
                  'class' => 'yareg\backup\Module',
+                 'allowWebAccess' => true,
                  'administratorRoleName' => '@',
                  'configs' => [
                      [
@@ -41,6 +42,7 @@ or add this to the `require` section of your composer.json.
  ```
 
 These parameters is possible to set up:
+- `allowWebAccess` - allow access to web controller
 - `administratorRoleName` - role to access web controller
 - `backupFolder` - path alias to the place where backups are stored (default is @app/backups)
 - `chmod` -  if this param has value, the new backup file will change mode after creation
