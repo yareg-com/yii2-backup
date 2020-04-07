@@ -36,7 +36,7 @@ class DatabaseBackupRestorer
     public function __construct(string $backupFilePath, Connection $connection, string $memoryLimit = '')
     {
         if (!file_exists($backupFilePath))
-            throw new Exception("Backup file don`t exist.");
+            throw new Exception("The backup file not found.");
 
         $this->backupFilePath = $backupFilePath;
         $this->connection     = $connection;
