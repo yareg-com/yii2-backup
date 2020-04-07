@@ -62,25 +62,14 @@ class DatabaseBackupRestorer
 
         $lines = gzfile($this->backupFilePath);
 
-        $isCommandEnd = false;
         foreach ($lines as $line) {
-
-            if ($isCommandEnd && $line === '') {
-                $isCommandEnd = false;
-                $this->connection->createCommand($this->sql)->execute();
-                $this->sql = '';
-                continue;
-            }
-
             if (substr($line, 0, 2) === '--' || $line === '')
                 continue;
-
             $this->sql .= $line;
-
-            if (substr(trim($line), -1, 1) === ';') {
-                $isCommandEnd = true;
-            }
         }
+
+        $this->connection->createCommand($this->sql)->execute();
+
         return true;
     }
 }
