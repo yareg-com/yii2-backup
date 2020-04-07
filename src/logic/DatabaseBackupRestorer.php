@@ -73,14 +73,21 @@ class DatabaseBackupRestorer
         $host   = $this->getDsnAttribute('host', $this->connection->dsn);
         $dbname = $this->getDsnAttribute('dbname', $this->connection->dsn);
 
-        $cmd = 'gunzip < ' . $this->backupFilePath . ' | mysql -h ' . $host . ' -u ' . $this->connection->username . ' -p' . $this->connection->password . ' ' .$dbname;
+        $cmd = 'gunzip < ' . $this->backupFilePath . ' | mysql -h ' . $host .
+            ' -u ' . $this->connection->username .
+            ' -p' . $this->connection->password .
+            ' ' .$dbname;
 
-        echo $cmd;
-        //system($cmd);
+        system($cmd);
 
         return true;
     }
 
+    /**
+     * @param $name
+     * @param $dsn
+     * @return mixed|null
+     */
     private function getDsnAttribute($name, $dsn)
     {
         if (preg_match('/' . $name . '=([^;]*)/', $dsn, $match)) {
