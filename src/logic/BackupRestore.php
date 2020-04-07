@@ -69,7 +69,14 @@ class BackupRestore
     {
         if ($this->_currentConfig['type'] == BackupType::DB) {
             $this->_connection = Yii::$app->{$this->_currentConfig['connection']};
-            return Yii::createObject(DatabaseBackupRestorer::class, [$this->backupFilePath, $this->_connection])->execute();
+            return Yii::createObject(
+                DatabaseBackupRestorer::class,
+                [
+                    $this->backupFilePath,
+                    $this->_connection,
+                    Yii::$app->{$this->_currentConfig['memoryLimit']} ?? ''
+                ]
+            )->execute();
         }
 
         if ($this->_currentConfig['type'] == BackupType::FILES) {

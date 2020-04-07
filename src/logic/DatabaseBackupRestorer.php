@@ -21,6 +21,10 @@ class DatabaseBackupRestorer
      * @var string
      */
     protected $sql;
+    /**
+     * @var string
+     */
+    protected $memoryLimit;
 
     /**
      * DatabaseBackupMaker constructor.
@@ -29,13 +33,14 @@ class DatabaseBackupRestorer
      * @param string $dumperClass
      * @throws Exception
      */
-    public function __construct(string $backupFilePath, Connection $connection)
+    public function __construct(string $backupFilePath, Connection $connection, string $memoryLimit = '')
     {
         if (!file_exists($backupFilePath))
             throw new Exception("Backup file don`t exist.");
 
         $this->backupFilePath = $backupFilePath;
-        $this->connection = $connection;
+        $this->connection     = $connection;
+        $this->memoryLimit    = $memoryLimit;
     }
 
     /**
@@ -44,6 +49,9 @@ class DatabaseBackupRestorer
      */
     public function execute()
     {
+        if ($this->memoryLimit !== '')
+            ini_set('memory_limit', $this->memoryLimit);
+
         $dbName = $this->connection->createCommand("SELECT DATABASE()")->queryScalar();
 
         $this->connection->createCommand("DROP DATABASE `{$dbName}`")->execute();
