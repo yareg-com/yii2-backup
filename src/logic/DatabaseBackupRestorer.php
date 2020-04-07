@@ -49,7 +49,7 @@ class DatabaseBackupRestorer
      */
     public function execute()
     {
-        if ($this->memoryLimit !== '') {
+        /*if ($this->memoryLimit !== '') {
             echo 'Setting memory limit to ' . $this->memoryLimit . PHP_EOL;
             ini_set('memory_limit', $this->memoryLimit);
         }
@@ -68,8 +68,25 @@ class DatabaseBackupRestorer
             $this->sql .= $line;
         }
 
-        $this->connection->createCommand($this->sql)->execute();
+        $this->connection->createCommand($this->sql)->execute();*/
+
+        $host   = $this->getDsnAttribute('host', $this->connection->dsn);
+        $dbname = $this->getDsnAttribute('dbname', $this->connection->dsn);
+
+        $cmd = 'gunzip < ' . $this->backupFilePath . ' | mysql -h ' . $host . ' -u ' . $this->connection->username . ' -p' . $this->connection->password . ' ' .$dbname;
+
+        echo $cmd;
+        //system($cmd);
 
         return true;
+    }
+
+    private function getDsnAttribute($name, $dsn)
+    {
+        if (preg_match('/' . $name . '=([^;]*)/', $dsn, $match)) {
+            return $match[1];
+        }
+
+        return null;
     }
 }
