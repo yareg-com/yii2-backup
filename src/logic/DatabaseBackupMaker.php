@@ -49,9 +49,9 @@ class DatabaseBackupMaker
             throw new Exception("Backup file exists.");
 
         $this->backupFilePath = $backupFilePath;
-        $this->connection = $connection;
-        $this->dumperClass = $dumperClass;
-        $this->compression = $compression;
+        $this->connection     = $connection;
+        $this->dumperClass    = $dumperClass;
+        $this->compression    = $compression;
     }
 
     /**
