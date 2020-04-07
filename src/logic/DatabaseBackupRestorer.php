@@ -49,8 +49,10 @@ class DatabaseBackupRestorer
      */
     public function execute()
     {
-        if ($this->memoryLimit !== '')
+        if ($this->memoryLimit !== '') {
+            echo 'Setting memory limit to ' . $this->memoryLimit . PHP_EOL;
             ini_set('memory_limit', $this->memoryLimit);
+        }
 
         $dbName = $this->connection->createCommand("SELECT DATABASE()")->queryScalar();
 
