@@ -65,7 +65,10 @@ class DatabaseBackupMaker
             $this->connection->dsn,
             $this->connection->username,
             $this->connection->password,
-            ['compress' => $this->compression]
+            [
+                'compress'       => $this->compression,
+                'add-drop-table' => true,
+            ]
         );
         $this->dumper->start($this->backupFilePath);
         if (Yii::$app->getModule('backup')->chmod)
