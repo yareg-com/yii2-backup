@@ -66,7 +66,7 @@ class DatabaseBackupRestorer
             if (substr($line, 0, 2) == '--' || $line == '')
                 continue;
             $this->sql .= $line;
-            if (substr(trim($line), -1, 1) == ';') {
+            if (substr(trim($line, "\t\r\0\x0B"), -3, 3) === ';' . PHP_EOL) {
                 $this->connection->createCommand($this->sql)->execute();
                 $this->sql = '';
             }
