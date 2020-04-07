@@ -74,7 +74,7 @@ class BackupRestore
                 [
                     $this->backupFilePath,
                     $this->_connection,
-                    Yii::$app->$this->_currentConfig['memoryLimit'] ?? ''
+                    $this->_currentConfig['memoryLimit'] ?? ''
                 ]
             )->execute();
         }
