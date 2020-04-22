@@ -60,6 +60,7 @@ class ApiController extends Controller
                     'backup' => ['post'],
                     'restore' => ['post'],
                     'download' => ['get'],
+                    'latest' => ['latest'],
                 ],
             ],
         ];
@@ -141,6 +142,19 @@ class ApiController extends Controller
     {
         $this->getBackup((int)$id);
         Yii::$app->response->sendFile($this->model->getFullPath());
+    }
+
+    public function actionLatest()
+    {
+        $this->getLatestBackup();
+        Yii::$app->response->sendFile($this->model->getFullPath());
+    }
+
+    protected function getLatestBackup()
+    {
+        $this->model = Backup::find()->orderBy('id DESC')->one();
+        if (!$this->model)
+            throw new NotFoundHttpException(Yii::t('app.f12.backup', 'Backup is not found.'));
     }
 
     /**
