@@ -56,6 +56,24 @@ class ConsoleController extends Controller
     }
 
     /**
+     * Pass existing backup ID and filename to this command to restore from specific file.
+     *
+     * @param string $configId
+     * @param string $fileName
+     * @throws ErrorException
+     * @throws InvalidConfigException
+     */
+    public function actionRestoreFromFile(string $configId, string $fileName)
+    {
+        $model = new Backup();
+        $model->config_id = $configId;
+        $model->filename = $fileName;
+
+        Yii::createObject(BackupRestore::class, [$model])->run();
+        $this->stdout('Backup restored.' . PHP_EOL, Console::FG_GREEN);
+    }
+
+    /**
      * @param string $backup_id
      * @throws ErrorException
      * @throws InvalidConfigException

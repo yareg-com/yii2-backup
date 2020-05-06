@@ -27,7 +27,6 @@ use yii\db\Connection;
  */
 class BackupRestore
 {
-
     private $_configs;
     private $_currentConfig;
     private $_model;
