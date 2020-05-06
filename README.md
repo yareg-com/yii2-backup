@@ -47,10 +47,7 @@ These parameters is possible to set up:
 - `backupFolder` - path alias to the place where backups are stored (default is @app/backups)
 - `chmod` -  if this param has value, the new backup file will change mode after creation
 - `authTokens` - array of auth tokens to use REST-API of the module
-- `ionice` - the value of this param will be placed before ZIP console command in case of disk backup (for example it's possible to put
- `iotince
- -c3` inside this param to run backup creation with IDLE disk i/o priority)
- - `adminLayout` - it will change default `main` layout to something you need (if your admin panel has different base layout)
+- `adminLayout` - it will change default `main` layout to something you need (if your admin panel has different base layout)
  
  And the main and required param is`configs` - its an array of your backup items (folders and databases).
  Each backup items mast have this elements to set:
@@ -59,7 +56,7 @@ These parameters is possible to set up:
  - `title` - human-readable backup item title to show in the admin interface
  - `limit` - how many backup copies keep before delete (`0` - never delete old copies)
  - `connection` - in case of database backup, connection name in Yii2 config 
- - `path` - in case of disk backup, the path to store backup files
+ - `path` - in case of files backup, the path to the files
  
     
 ## Usage

@@ -19,10 +19,6 @@ class FolderBackupMaker
      * @var string
      */
     protected $chmod;
-    /**
-     * @var string
-     */
-    protected $ionice;
 
     /**
      * DatabaseBackupMaker constructor.
@@ -41,7 +37,6 @@ class FolderBackupMaker
         $this->backupFilePath = $backupFilePath;
         $this->targetFolder = $targetFolder;
         $this->chmod = Yii::$app->getModule('backup')->chmod;
-        $this->ionice = Yii::$app->getModule('backup')->ionice;
     }
 
     /**
@@ -53,12 +48,6 @@ class FolderBackupMaker
         $output     = '';
         $return_var = -1;
         $command    = "tar -zcvf {$this->backupFilePath} -C {$this->targetFolder} .";
-        echo "Executing: {$command}" . PHP_EOL;
-
-        /*if ($this->ionice)
-            exec("cd {$this->targetFolder} && " . $this->ionice . " zip -r -0 {$this->backupFilePath} *");
-        else
-            exec("cd {$this->targetFolder} && zip -r -0 {$this->backupFilePath} *", $tmo);*/
 
         exec($command, $output, $return_var);
 
