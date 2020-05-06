@@ -14,10 +14,6 @@ class FolderBackupMaker
     /**
      * @var string
      */
-    protected $backupFolder;
-    /**
-     * @var string
-     */
     protected $targetFolder;
     /**
      * @var string
@@ -43,7 +39,6 @@ class FolderBackupMaker
             throw new Exception("Target folder not exists.");
 
         $this->backupFilePath = $backupFilePath;
-        $this->backupFolder = Yii::$app->getModule('backup')->backupFolder;
         $this->targetFolder = $targetFolder;
         $this->chmod = Yii::$app->getModule('backup')->chmod;
         $this->ionice = Yii::$app->getModule('backup')->ionice;
@@ -57,7 +52,7 @@ class FolderBackupMaker
     {
         $output     = '';
         $return_var = -1;
-        $command    = "cd {$this->backupFolder} && tar -zcvf {$this->targetFolder} .";
+        $command    = "tar {$this->backupFilePath} -zcvf {$this->targetFolder} .";
         echo "Executing: {$command}" . PHP_EOL;
 
         /*if ($this->ionice)
