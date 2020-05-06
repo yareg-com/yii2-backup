@@ -50,13 +50,21 @@ class FolderBackupMaker
      */
     public function execute()
     {
-        if ($this->ionice)
-            exec(" cd {$this->targetFolder} && " . $this->ionice . " zip -r -0 {$this->backupFilePath} *");
-        else
-            exec("cd {$this->targetFolder} && zip -r -0 {$this->backupFilePath} *", $tmo);
+        $output     = '';
+        $return_var = -1;
+        $command    = 'tar -zcvf {$this->backupFilePath} {$this->targetFolder}';
 
-        if ($this->chmod)
+        /*if ($this->ionice)
+            exec("cd {$this->targetFolder} && " . $this->ionice . " zip -r -0 {$this->backupFilePath} *");
+        else
+            exec("cd {$this->targetFolder} && zip -r -0 {$this->backupFilePath} *", $tmo);*/
+
+        exec($command, $output, $return_var);
+
+        if ($return_var === 0 && $this->chmod) {
             chmod($this->backupFilePath, $this->chmod);
-        return true;
+        }
+
+        return $return_var === 0;
     }
 }

@@ -78,9 +78,11 @@ class DatabaseBackupRestorer
             ' -p' . $this->connection->password .
             ' ' .$dbname;
 
-        system($cmd);
+        $output     = '';
+        $return_var = -1;
+        exec($cmd, $output, $return_var);
 
-        return true;
+        return $return_var === 0;
     }
 
     /**
