@@ -53,6 +53,7 @@ class FolderBackupMaker
         $output     = '';
         $return_var = -1;
         $command    = "tar -zcvf {$this->backupFilePath} {$this->targetFolder}";
+        echo "Executing: {$command}" . PHP_EOL;
 
         /*if ($this->ionice)
             exec("cd {$this->targetFolder} && " . $this->ionice . " zip -r -0 {$this->backupFilePath} *");
