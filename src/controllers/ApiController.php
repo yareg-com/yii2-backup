@@ -55,12 +55,12 @@ class ApiController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'index' => ['get'],
-                    'delete' => ['delete'],
-                    'backup' => ['post'],
-                    'restore' => ['post'],
-                    'download' => ['get'],
-                    'latest' => ['latest'],
+                    'index'    => ['get'],
+                    'delete'   => ['delete'],
+                    'backup'   => ['post'],
+                    'restore'  => ['post'],
+                    'get'      => ['get'],
+                    'latest'   => ['get'],
                 ],
             ],
         ];
@@ -152,7 +152,7 @@ class ApiController extends Controller
 
     protected function getLatestBackup()
     {
-        $this->model = Backup::find()->orderBy('id DESC')->one();
+        $this->model = Backup::find()->orderBy('id DESC')->limit(1)->one();
         if (!$this->model)
             throw new NotFoundHttpException(Yii::t('app.f12.backup', 'Backup is not found.'));
     }
