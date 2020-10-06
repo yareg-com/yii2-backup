@@ -39,7 +39,7 @@ class FolderBackupRestorer
      */
     public function execute()
     {
-        $command = "cd {$this->targetFolder} && unzip -o {$this->backupFilePath}";
+        $command = "cd {$this->targetFolder} && tar -xf {$this->backupFilePath}";
         exec($command, $r);
         return true;
     }
