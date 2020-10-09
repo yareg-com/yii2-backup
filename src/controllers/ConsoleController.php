@@ -9,6 +9,7 @@
 namespace yareg\backup\controllers;
 
 use ErrorException;
+use Throwable;
 use yareg\backup\logic\BackupCreate;
 use yareg\backup\logic\BackupRestore;
 use yareg\backup\models\Backup;
@@ -16,6 +17,7 @@ use yareg\backup\models\BackupType;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
+use yii\db\StaleObjectException;
 use yii\helpers\Console;
 
 /**
@@ -30,7 +32,7 @@ class ConsoleController extends Controller
      * Pass config_id to this command to create new backup.
      *
      * @param string $config_id
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException|StaleObjectException|Throwable
      */
     public function actionBackup(string $config_id)
     {
@@ -60,13 +62,23 @@ class ConsoleController extends Controller
      *
      * @param string $configId
      * @param string $fileName
-     * @throws ErrorException
      * @throws InvalidConfigException
      */
-    public function actionRestoreFromFile(string $configId, string $fileName)
+    public function actionRestoreFromFile(string $configId, string $fileName = '')
     {
         $model = new Backup();
         $model->config_id = $configId;
+
+        if (empty($fileName)) {
+            $path     = Yii::$app->getModule('backup')->backupRootPath.DIRECTORY_SEPARATOR;
+            $files    = scandir($path, SCANDIR_SORT_DESCENDING);
+            $fileName = count($files) > 0 ? $files[0] : '';
+        }
+
+        if (empty($fileName)) {
+            $this->stderr('Unable to find the backup file.' . PHP_EOL, Console::FG_RED);
+        }
+
         $model->filename = $fileName;
 
         Yii::createObject(BackupRestore::class, [$model])->run();
@@ -76,7 +88,7 @@ class ConsoleController extends Controller
     /**
      * @param string $backup_id
      * @throws ErrorException
-     * @throws InvalidConfigException
+     * @throws StaleObjectException|Throwable
      */
     public function actionDelete(string $backup_id)
     {
@@ -91,15 +103,16 @@ class ConsoleController extends Controller
     /**
      * List all created backups.
      *
-     * @throws ErrorException
      * @throws InvalidConfigException
      */
     public function actionIndex()
     {
         $models = Backup::find()->orderBy('id DESC')->all();
         
-        if (empty($models))
-            return $this->stderr('Backups not found.' . PHP_EOL, Console::FG_YELLOW);
+        if (empty($models)) {
+            $this->stderr('Backups not found.' . PHP_EOL, Console::FG_YELLOW);
+            return;
+        }
 
         foreach ($models as $model)
             $this->stdout("{$model->id}: " . Yii::$app->formatter->asDatetime($model->date) . "\t\t{$model->config_id}\t\t" .
