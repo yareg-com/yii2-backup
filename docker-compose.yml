@@ -1,0 +1,6 @@
+yareg_yii2_backup:
+  image: yareg/yii2-php-ffmpeg:7.4-fpm
+  container_name: yareg_yii2_backup
+  volumes:
+    - ./:/app
+  restart: unless-stopped
