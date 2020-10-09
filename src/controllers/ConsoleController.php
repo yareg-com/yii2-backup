@@ -72,7 +72,9 @@ class ConsoleController extends Controller
         if (empty($fileName)) {
             $path     = Yii::$app->getModule('backup')->backupRootPath.DIRECTORY_SEPARATOR;
             $files    = preg_grep('~\.gz$~i', scandir($path, SCANDIR_SORT_DESCENDING));
-            $fileName = count($files) > 0 ? $files[0] : '';
+            if (is_array($files) && count($files) > 0) {
+                $fileName = $files[0];
+            }
         }
 
         if (empty($fileName)) {
