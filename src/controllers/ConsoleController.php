@@ -81,6 +81,7 @@ class ConsoleController extends Controller
 
         $model->filename = $fileName;
 
+        $this->stdout('Restoring from ' . $fileName . PHP_EOL, Console::FG_GREEN);
         Yii::createObject(BackupRestore::class, [$model])->run();
         $this->stdout('Backup restored.' . PHP_EOL, Console::FG_GREEN);
     }
