@@ -73,6 +73,8 @@ class ConsoleController extends Controller
             $path  = Yii::$app->getModule('backup')->backupRootPath.DIRECTORY_SEPARATOR;
             $files = preg_grep('~\.gz$~i', scandir($path, SCANDIR_SORT_DESCENDING));
 
+            var_dump($files);
+
             if (is_array($files) && count($files) > 0) {
                 $fileName = $files[0];
             } else {
@@ -83,7 +85,7 @@ class ConsoleController extends Controller
 
         $model->filename = $fileName;
 
-        $this->stdout('Restoring from ' . $fileName . PHP_EOL, Console::FG_GREEN);
+        $this->stdout('Restoring from ' . $fileName . '...' . PHP_EOL, Console::FG_GREEN);
         Yii::createObject(BackupRestore::class, [$model])->run();
         $this->stdout('Backup restored.' . PHP_EOL, Console::FG_GREEN);
     }
