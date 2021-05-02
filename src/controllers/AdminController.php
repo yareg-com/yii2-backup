@@ -33,7 +33,7 @@ class AdminController extends Controller
      * @inheritDoc
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -59,14 +59,9 @@ class AdminController extends Controller
 
     /**
      * @inheritdoc
-     * @throws NotFoundHttpException
      */
     public function init()
     {
-        if (!(Yii::$app->getModule('backup')->allowWebAccess ?? false))
-            throw new NotFoundHttpException();
-
-
         $this->layout = Yii::$app->getModule('backup')->adminLayout;
         parent::init();
     }
@@ -74,7 +69,7 @@ class AdminController extends Controller
     /**
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $model = new BackupFilter();
         return $this->render('index', [
@@ -84,7 +79,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @return string
+     * @return void
      * @throws NotFoundHttpException
      * @throws Throwable
      * @throws StaleObjectException

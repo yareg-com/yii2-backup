@@ -26,7 +26,6 @@ use yii\web\Response;
 
 class ApiController extends Controller
 {
-
     const HEADER_NAME = 'Backup-Auth-Token';
     /**
      * @var Backup
@@ -43,7 +42,7 @@ class ApiController extends Controller
      * @inheritDoc
      * @return array
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'contentNegotiator' => [
@@ -72,18 +71,17 @@ class ApiController extends Controller
      * @throws ForbiddenHttpException
      * @throws BadRequestHttpException
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         $this->checkPermission();
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
 
-
     /**
      * @return array
      */
-    public function actionIndex()
+    public function actionIndex(): array
     {
         $model = new BackupFilter();
         return $model->dataProvider()->getModels();
@@ -96,7 +94,7 @@ class ApiController extends Controller
      * @throws Throwable
      * @throws StaleObjectException
      */
-    public function actionDelete($id)
+    public function actionDelete($id): array
     {
         $this->getBackup((int)$id);
         $this->model->delete();
@@ -111,7 +109,7 @@ class ApiController extends Controller
      * @throws Throwable
      * @throws StaleObjectException
      */
-    public function actionBackup($config_id)
+    public function actionBackup($config_id): array
     {
         if (!Yii::$app->getModule('backup')->checkConfig($config_id))
             throw new NotFoundHttpException(Yii::t('app.f12.backup', 'Backup config is not found.'));
@@ -127,7 +125,7 @@ class ApiController extends Controller
      * @throws InvalidConfigException
      * @throws NotFoundHttpException
      */
-    public function actionRestore($id)
+    public function actionRestore($id): array
     {
         $this->getBackup((int)$id);
         Yii::createObject(BackupRestore::class, [$this->model])->run();
@@ -144,12 +142,18 @@ class ApiController extends Controller
         Yii::$app->response->sendFile($this->model->getFullPath());
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionLatest()
     {
         $this->getLatestBackup();
         Yii::$app->response->sendFile($this->model->getFullPath());
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     protected function getLatestBackup()
     {
         $this->model = Backup::find()->orderBy('id DESC')->limit(1)->one();
@@ -172,7 +176,7 @@ class ApiController extends Controller
      * @return bool
      * @throws ForbiddenHttpException
      */
-    protected function checkPermission()
+    protected function checkPermission(): bool
     {
         $headers = Yii::$app->request->getHeaders();
         $authTokens = Yii::$app->getModule('backup')->authTokens;
@@ -180,5 +184,4 @@ class ApiController extends Controller
             return true;
         throw new ForbiddenHttpException();
     }
-
 }
