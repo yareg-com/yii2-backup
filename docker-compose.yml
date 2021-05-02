@@ -1,6 +1,6 @@
-yareg_yii2_backup:
-  image: yareg/yii2-php-ffmpeg:7.4-fpm
-  container_name: yareg_yii2_backup
+yii2_backup:
+  image: yiisoftware/yii2-php:7.4-fpm
+  container_name: yii2_backup
+  restart: unless-stopped
   volumes:
     - ./:/app
-  restart: unless-stopped

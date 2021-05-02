@@ -13,6 +13,7 @@ use yii\base\ErrorException;
 use yii\base\NotSupportedException;
 use yii\db\Connection;
 use yii\db\Exception;
+use yii\web\ForbiddenHttpException;
 
 class Module extends \yii\base\Module
 {
@@ -64,34 +65,44 @@ class Module extends \yii\base\Module
 
     /**
      * @inheritdoc
+     * @throws ErrorException
+     * @throws Exception
+     * @throws NotSupportedException
+     * @throws ForbiddenHttpException
      */
     public function init()
     {
-        $this->backupRootPath = Yii::getAlias($this->backupFolder);
-
-        try {
-            if (!file_exists($this->backupRootPath))
-                mkdir($this->backupRootPath);
-        } catch (ErrorException $e) {
-            throw new ErrorException("Backup folder not exists. Its impossible to create it because of permission error.");
+        if (!Yii::$app->request->isConsoleRequest && !(Yii::$app->getModule('backup')->allowWebAccess ?? false)) {
+            throw new ForbiddenHttpException();
         }
 
-        if (!is_writable($this->backupRootPath))
+        $this->backupRootPath = Yii::getAlias($this->backupFolder);
+
+        if (!file_exists($this->backupRootPath)) {
+            mkdir($this->backupRootPath);
+        }
+
+        if (!is_writable($this->backupRootPath)) {
             throw new ErrorException("Backup folder is not writable.");
+        }
 
         $this->checkDb();
         $this->registerTranslations();
+
+        parent::init();
     }
 
     /**
      * @param string $config_id
      * @return bool
      */
-    public function checkConfig(string $config_id)
+    public function checkConfig(string $config_id): bool
     {
-        foreach (Yii::$app->getModule('backup')->configs as $config)
-            if ($config['id'] == $config_id)
+        foreach (Yii::$app->getModule('backup')->configs as $config) {
+            if ($config['id'] == $config_id) {
                 return true;
+            }
+        }
         return false;
     }
 
@@ -133,5 +144,4 @@ class Module extends \yii\base\Module
             ],
         ];
     }
-
 }
