@@ -13,7 +13,7 @@ use yii\base\ErrorException;
 use yii\base\NotSupportedException;
 use yii\db\Connection;
 use yii\db\Exception;
-use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 
 class Module extends \yii\base\Module
 {
@@ -68,12 +68,12 @@ class Module extends \yii\base\Module
      * @throws ErrorException
      * @throws Exception
      * @throws NotSupportedException
-     * @throws ForbiddenHttpException
+     * @throws NotFoundHttpException
      */
     public function init()
     {
-        if (!Yii::$app->request->isConsoleRequest && !(Yii::$app->getModule('backup')->allowWebAccess ?? false)) {
-            throw new ForbiddenHttpException();
+        if (!Yii::$app->request->isConsoleRequest && !($this->allowWebAccess ?? false)) {
+            throw new NotFoundHttpException();
         }
 
         $this->backupRootPath = Yii::getAlias($this->backupFolder);
